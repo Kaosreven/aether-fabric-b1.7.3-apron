@@ -153,7 +153,6 @@ public class EntityFiroBall extends FlyingEntity {
     }
 
     public void updateAnims() {
-        if (!this.frosty) {
             for (int i = 0; i < 3; ++i) {
                 float[] var10000 = this.sinage;
                 var10000[i] += 0.3F + (float) i * 0.13F;
@@ -162,7 +161,6 @@ public class EntityFiroBall extends FlyingEntity {
                     var10000[i] -= 6.283186F;
                 }
             }
-        }
 
     }
 
