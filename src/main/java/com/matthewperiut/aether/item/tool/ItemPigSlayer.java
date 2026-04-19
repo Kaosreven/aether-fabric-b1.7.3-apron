@@ -21,7 +21,7 @@ public class ItemPigSlayer extends TemplateSwordItem {
     public boolean postHit(ItemStack itemstack, LivingEntity entityliving, LivingEntity entityliving1) {
         if (entityliving != null && entityliving1 != null) {
             String s = EntityRegistry.getId(entityliving);
-            if (!s.equals("") && s.toLowerCase().contains("pig")) {
+            if (!s.equals("") && s.toLowerCase().contains("pig") || s.toLowerCase().contains("phyg")) {
                 if (entityliving.health > 0) {
                     entityliving.health = 1;
                     entityliving.hurtTime = 0;
