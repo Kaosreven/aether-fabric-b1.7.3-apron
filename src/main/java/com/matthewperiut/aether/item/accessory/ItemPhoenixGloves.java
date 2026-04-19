@@ -1,5 +1,6 @@
 package com.matthewperiut.aether.item.accessory;
 
+import com.matthewperiut.aether.item.AetherItems;
 import com.matthewperiut.aether.item.tool.ItemPhoenixArmour;
 import com.matthewperiut.aether.mixin.access.EntityAccessor;
 import net.fabricmc.api.EnvType;
@@ -28,6 +29,10 @@ public class ItemPhoenixGloves extends ItemGloves {
     public ItemStack tickWhileWorn(PlayerEntity player, ItemStack itemInstance) {
         if (player.isWet()) {
             itemInstance.damage(1, player);
+            if (itemInstance.getDamage2() > itemInstance.getMaxDamage() - 2) {
+                ((EntityAccessor) player).setImmuneToFire(false);
+                return new ItemStack(AetherItems.ObsidianGlove, 1);
+            }
         }
 
         if (phoenixArmour(player, 0) &&
@@ -44,17 +49,12 @@ public class ItemPhoenixGloves extends ItemGloves {
             ((EntityAccessor) player).setImmuneToFire(false);
         }
 
-        if (itemInstance.getDamage2() > itemInstance.getMaxDamage() - 2) {
-            itemInstance = null;
-        }
-
         return itemInstance;
     }
 
     @Override
     public void onAccessoryRemoved(PlayerEntity player, ItemStack accessory) {
         ((EntityAccessor) player).setImmuneToFire(false);
-
         super.onAccessoryRemoved(player, accessory);
     }
 }
